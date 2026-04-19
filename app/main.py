@@ -38,13 +38,13 @@ class Car:
 
 class CarWashStation:
     """
-    Represents a car wash station with specific attributes and methods to serve cars.
+    Represents a car wash station with attributes and methods to serve cars.
 
     Attributes:
-        distance_from_city_center (float): Distance from the city center (1.0 to 10.0).
+        distance_from_city_center (float): (1.0 to 10.0).
         clean_power (int): Clean power of the station (1 to 10).
         average_rating (float): Average rating of the station (1.0 to 5.0).
-        count_of_ratings (int): Count of ratings received by the station (greater than 0).
+        count_of_ratings (int): (equal to or greater than 0).
     """
 
     def __init__(
@@ -58,23 +58,31 @@ class CarWashStation:
         Initializes a CarWashStation instance.
 
         Args:
-            distance_from_city_center (float): Distance from the city center (1.0 to 10.0).
+            distance_from_city_center (float): (1.0 to 10.0).
             clean_power (int): Clean power of the station (1 to 10).
             average_rating (float): Average rating of the station (1.0 to 5.0).
-            count_of_rating (int): Count of ratings received by the station (greater than 0).
+            count_of_ratings (int): (equal to or greater than 0).
 
         Raises:
             ValueError: If any argument is out of valid range.
         """
 
         if not 1.0 <= distance_from_city_center <= 10.0:
-            raise ValueError("distance_from_city_center must be between 1.0 and 10.0")
+            raise ValueError(
+                "distance_from_city_center must be between 1.0 and 10.0"
+            )
         if not 1 <= clean_power <= 10:
-            raise ValueError("clean_power must be between 1 and 10")
+            raise ValueError(
+                "clean_power must be between 1 and 10"
+            )
         if not 1.0 <= average_rating <= 5.0:
-            raise ValueError("average_rating must be between 1.0 and 5.0")
+            raise ValueError(
+                "average_rating must be between 1.0 and 5.0"
+            )
         if not 0 <= count_of_rating:
-            raise ValueError("count_of_rating must be equal to or greater than 0")
+            raise ValueError(
+                "count_of_rating must be equal to or greater than 0"
+            )
 
         self.distance_from_city_center = distance_from_city_center
         self.clean_power = clean_power
@@ -90,7 +98,8 @@ class CarWashStation:
             list_of_cars (list): List of Car instances to be served.
 
         Returns:
-            float: The income of the car wash station for serving the list of cars.
+            float: The income of the car wash station for serving the list of
+            cars.
         """
 
         income = 0.0
