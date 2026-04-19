@@ -86,7 +86,7 @@ class CarWashStation:
 
         self.distance_from_city_center = distance_from_city_center
         self.clean_power = clean_power
-        self.average_rating = average_rating
+        self.average_rating = round(average_rating, 1)
         self.count_of_ratings = count_of_rating
 
     def serve_cars(self, list_of_cars: list) -> float:
@@ -119,10 +119,10 @@ class CarWashStation:
         Returns:
             float: The calculated washing price, rounded to 1 decimal.
         """
-        return round((car.comfort_class
-                      * (self.clean_power - car.clean_mark)
-                      * self.average_rating
-                      / self.distance_from_city_center), 1)
+        return round((car.comfort_class *
+                      (self.clean_power - car.clean_mark) *
+                      self.average_rating /
+                      self.distance_from_city_center), 1)
 
     def wash_single_car(self, car: Car) -> None:
         """
@@ -132,7 +132,8 @@ class CarWashStation:
         Args:
             car (Car): The car to be washed.
         """
-        car.clean_mark = self.clean_power
+        if car.clean_mark < self.clean_power:
+            car.clean_mark = self.clean_power
         return None
 
     def rate_service(self, rating: float) -> None:
@@ -148,7 +149,7 @@ class CarWashStation:
         """
         if not 1.0 <= rating <= 5.0:
             raise ValueError("rating must be between 1.0 and 5.0")
-        self.average_rating = round((self.average_rating
-                                    * self.count_of_ratings + rating)
-                                    / (self.count_of_ratings + 1), 1)
+        self.average_rating = round((self.average_rating *
+                                     self.count_of_ratings + rating) /
+                                    (self.count_of_ratings + 1), 1)
         self.count_of_ratings += 1
