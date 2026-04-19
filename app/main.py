@@ -52,7 +52,7 @@ class CarWashStation:
         distance_from_city_center: float,
         clean_power: int,
         average_rating: float,
-        count_of_rating: int
+        count_of_ratings: int
     ) -> None:
         """
         Initializes a CarWashStation instance.
@@ -79,15 +79,15 @@ class CarWashStation:
             raise ValueError(
                 "average_rating must be between 1.0 and 5.0"
             )
-        if not 0 <= count_of_rating:
+        if not 0 <= count_of_ratings:
             raise ValueError(
-                "count_of_rating must be equal to or greater than 0"
+                "count_of_ratings must be equal to or greater than 0"
             )
 
         self.distance_from_city_center = distance_from_city_center
         self.clean_power = clean_power
         self.average_rating = round(average_rating, 1)
-        self.count_of_ratings = count_of_rating
+        self.count_of_ratings = count_of_ratings
 
     def serve_cars(self, list_of_cars: list) -> float:
         """
@@ -119,10 +119,10 @@ class CarWashStation:
         Returns:
             float: The calculated washing price, rounded to 1 decimal.
         """
-        return round((car.comfort_class *
-                      (self.clean_power - car.clean_mark) *
-                      self.average_rating /
-                      self.distance_from_city_center), 1)
+        return round((car.comfort_class
+                     * (self.clean_power - car.clean_mark)
+                     * self.average_rating
+                     / self.distance_from_city_center), 1)
 
     def wash_single_car(self, car: Car) -> None:
         """
@@ -149,7 +149,7 @@ class CarWashStation:
         """
         if not 1.0 <= rating <= 5.0:
             raise ValueError("rating must be between 1.0 and 5.0")
-        self.average_rating = round((self.average_rating *
-                                     self.count_of_ratings + rating) /
-                                    (self.count_of_ratings + 1), 1)
+        self.average_rating = round((self.average_rating
+                                    * self.count_of_ratings + rating)
+                                    / (self.count_of_ratings + 1), 1)
         self.count_of_ratings += 1
